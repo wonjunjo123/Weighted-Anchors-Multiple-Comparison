@@ -28,26 +28,32 @@ The default significance threshold (anchor) is set using the Šidák correction 
 
 $$\text{anchor} = 1 - (1 - \alpha)^{1/m}$$
 
-### Uncertainty Weights
+**(c) Uncertainty.** Compute the uncertainty of each p-value $p_i$ as:
 
-Each comparison receives a weight based on its proportional distance from the anchor:
+$$\mathrm{uncertainty} = \frac{1}{\mathrm{distance}} = \frac{1}{\left|\log \frac{\alpha_1}{p_i}\right|}$$
 
-$$\mathrm{dist}_{ij} = \mathrm{prop\_dist}(p_{ij}, \mathrm{anchor}), \qquad w_{ij} = \frac{1/\mathrm{dist}_{ij}}{\sum_k 1/\mathrm{dist}_k}$$
+Distance is defined as the absolute log-ratio of the p-value to the anchor. Taking the logarithm "tames" exponential differences, and the absolute value ensures distances are the same in either direction. Uncertainty is the reciprocal of distance — the closer a p-value is to the anchor, the more uncertain we are.
 
-Comparisons closer to the anchor get higher weight (more uncertainty = more budget).
+**(d) Weights.** Each p-value's weight is its proportion of total uncertainty:
 
-### Adaptive Threshold
+$$w_i = \frac{\mathrm{uncertainty}_i}{\sum_k \mathrm{uncertainty}_k}$$
 
-Let $\tilde{w}^+$ = median weight among comparisons with $p > \text{anchor}$, and $\tilde{w}^-$ = median weight among comparisons with $p \leq \text{anchor}$. The per-comparison threshold is:
+**(e) Threshold for $p_i > \alpha_1$ (non-rejected comparisons).** Add budget proportional to weight, scaled by $\eta$:
 
-$$\tau_{ij} = \begin{cases}
-\text{anchor} + \min\!\left(\frac{1}{w_{ij}},\ \frac{\text{anchor}}{\eta} - \varepsilon\right) \cdot \eta & \text{if } p_{ij} > \text{anchor} \text{ and } w_{ij} < \tilde{w}^+ \\
-\text{anchor} - \min\!\left(\frac{1}{w_{ij}},\ \frac{\text{anchor}}{\eta} - \varepsilon\right) \cdot \eta & \text{if } p_{ij} > \text{anchor} \text{ and } w_{ij} \geq \tilde{w}^+ \\
-\text{anchor} - \min\!\left(\frac{1}{w_{ij}},\ \frac{\text{anchor}}{\eta} - \varepsilon\right) \cdot \eta & \text{if } p_{ij} \leq \text{anchor} \text{ and } w_{ij} \leq \tilde{w}^- \\
-\text{anchor} & \text{otherwise}
-\end{cases}$$
+$$\mathrm{new\ threshold} = \alpha_1 + w_i \cdot \eta$$
 
-A comparison is declared significant if $p_{ij} < \tau_{ij}$.
+**(f) Threshold for $p_i \leq \alpha_1$ (rejected comparisons).** Subtract budget proportional to weight, scaled by $\eta$, with a floor to ensure the threshold stays positive:
+
+$$\mathrm{new\ threshold} = \alpha_1 - \min\!\left(\frac{1}{w_i},\ \frac{\alpha_1}{\eta} - \epsilon\right) \cdot \eta$$
+
+The $\left(\frac{\alpha_1}{\eta} - \epsilon\right)$ term guarantees the threshold stays above 0, since:
+
+$$\alpha_1 - \left(\frac{\alpha_1}{\eta} - \epsilon\right) \cdot \eta = \alpha_1 - \alpha_1 + \epsilon\eta = \epsilon\eta > 0$$
+
+Note that $\frac{1}{w_i}$ is used here (rather than $w_i$ as in step (e)) because we want to de-allocate more budget from comparisons with smaller weights.
+
+**(g) Significance.** A comparison is declared significant if $p_i < \mathrm{new\ threshold}$.
+
 
 ---
 

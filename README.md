@@ -76,13 +76,28 @@ install.packages("tidyr")
 install.packages("ggplot2")
 ```
 
+### Repository Structure
+
+| File | Description |
+|------|-------------|
+| `mc_project budget (main).R` | All function definitions (`my_comparison`, `calibrate_eta`, `prop_dist`, `simulate_fwer`, `simulate_power`, `tukey_hsd`) |
+| `simulation.R` | Executable code — runs the oil filter demo, FWER simulations, and power analysis |
+| `example_data.R` | Standalone example using teaching method data |
+
 ### Setup
 
-Clone this repository or download `mc_project_budget_main.R` directly, then source it:
+Clone this repository, then source the functions file to load all functions into your environment:
 
 ```r
-source("mc_project_budget_main.R")
+source("mc_project budget (main).R")
 ```
+
+To reproduce the full simulation results and power analysis:
+
+```r
+source("simulation.R")
+```
+
 
 ### Key Functions
 

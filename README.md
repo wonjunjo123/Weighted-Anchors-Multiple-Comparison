@@ -154,18 +154,15 @@ print(results[, c("group1", "group2", "diff", "pval", "threshold", "significant"
 ## When to Use This Method vs. Tukey's HSD
 
 ### Use this method when:
-
+- You want to detect real, but small differences
 - You have a **moderate number of groups** (3–6) where some comparisons are near the boundary of significance and careful budget allocation matters
 - You are willing to accept **slightly variable FWER** in exchange for improved power on borderline comparisons
 - You want a **tunable procedure** — `eta` allows you to control how aggressively budget is redistributed
-- Comparisons are of **unequal scientific importance** and you want the procedure to naturally focus sensitivity where it is most needed
 
 ### Use Tukey's HSD when:
-
-- You want a **well-established, peer-reviewed** procedure with guaranteed FWER control
-- You have **unequal group sizes** (Tukey's HSD handles this via the Tukey-Kramer adjustment; this method currently assumes equal $J$)
-- You need a method that is **immediately recognized** by reviewers and journals
+- You need to detect real differences with higher effect sizes
 - You have **many groups** (6+), where the behavior of the uncertainty weights becomes harder to interpret
+- You need a method that is **immediately recognized** by reviewers and journals
 - **Simplicity and reproducibility** are priorities over adaptive behavior
 
 ---

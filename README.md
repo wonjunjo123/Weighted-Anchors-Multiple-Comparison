@@ -20,7 +20,7 @@ $$t_{ij} = \frac{|\bar{x}_i - \bar{x}_j|}{\sqrt{2 \cdot \text{MSE} / J}}$$
 
 with degrees of freedom $df = I(J-1)$, giving a two-sided p-value:
 
-$$p_{ij} = 2\left(1 - F_t(|t_{ij}|, df)\right)$$
+$$p_{ij} = 2\left(1 - pt(|t_{ij}|, df)\right)$$
 
 ### Šidák Anchor
 

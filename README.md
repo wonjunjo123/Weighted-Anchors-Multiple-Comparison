@@ -28,21 +28,21 @@ The default significance threshold (anchor) is set using the Šidák correction 
 
 $$\text{anchor} = 1 - (1 - \alpha)^{1/m}$$
 
-**(c) Uncertainty.** Compute the uncertainty of each p-value $p_i$ as:
+### Uncertainty.** Compute the uncertainty of each p-value $p_i$ as:
 
 $$\mathrm{uncertainty} = \frac{1}{\mathrm{distance}} = \frac{1}{\left|\log \frac{\alpha_1}{p_i}\right|}$$
 
 Distance here is uniquely defined as the absolute log-ratio of the p-value to the anchor. Taking the logarithm "tames" exponential differences, and the absolute value ensures distances are the same in either direction. Uncertainty is the reciprocal of distance — the closer a p-value is to the anchor, the more uncertain we are.
 
-**(d) Weights.** Each p-value's weight is its proportion of total uncertainty:
+### Weights.** Each p-value's weight is its proportion of total uncertainty:
 
 $$w_i = \frac{\mathrm{uncertainty}_i}{\sum_k \mathrm{uncertainty}_k}$$
 
-**(e) Threshold for $p_i > \alpha_1$ (non-rejected comparisons).** Add budget proportional to weight, scaled by $\eta$:
+### Threshold for $p_i > \alpha_1$ (non-rejected comparisons).** Add budget proportional to weight, scaled by $\eta$:
 
 $$\mathrm{new\ threshold} = \alpha_1 + w_i \cdot \eta$$
 
-**(f) Threshold for $p_i \leq \alpha_1$ (rejected comparisons).** Subtract budget proportional to weight, scaled by $\eta$, with a floor to ensure the threshold stays positive:
+### Threshold for $p_i \leq \alpha_1$ (rejected comparisons).** Subtract budget proportional to weight, scaled by $\eta$, with a floor to ensure the threshold stays positive:
 
 $$\mathrm{new\ threshold} = \alpha_1 - \min\!\left(\frac{1}{w_i},\ \frac{\alpha_1}{\eta} - \epsilon\right) \cdot \eta$$
 
@@ -52,7 +52,7 @@ $$\alpha_1 - \left(\frac{\alpha_1}{\eta} - \epsilon\right) \cdot \eta = \alpha_1
 
 Note that $\frac{1}{w_i}$ is used here (rather than $w_i$ as in step (e)) because we want to de-allocate more budget from comparisons with smaller weights.
 
-**(g) Significance.** A comparison is declared significant if $p_i < \mathrm{new\ threshold}$.
+### Significance.** A comparison is declared significant if $p_i < \mathrm{new\ threshold}$.
 
 
 ---

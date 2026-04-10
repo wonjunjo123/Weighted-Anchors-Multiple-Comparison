@@ -67,39 +67,64 @@ A comparison is declared significant if $p_i < \mathrm{new\ threshold}$.
 ### Requirements
 
 - R (version 4.0 or later)
-- No additional packages required (uses base R only)
+- The following R packages:
+
+```r
+install.packages("progress")
+install.packages("knitr")
+install.packages("tidyr")
+install.packages("ggplot2")
+```
 
 ### Setup
 
-Clone this repository or download `my_comparison.R` directly:
+Clone this repository or download `mc_project_budget_main.R` directly, then source it:
 
 ```r
-source("my_comparison.R")
+source("mc_project_budget_main.R")
 ```
 
-### Function Signature
+### Key Functions
 
-```r
-my_comparison(means, J, MSE, alpha = 0.05, eta = 1)
-```
+#### `my_comparison(means, J, MSE, alpha = 0.05, eta = 1)`
+
+The main comparison function.
 
 | Parameter | Description |
 |-----------|-------------|
 | `means`   | Numeric vector of group sample means |
 | `J`       | Number of observations per group |
-| `MSE`     | Mean squared error (pooled) from ANOVA |
-| `alpha`   | Familywise error rate target (default: 0.05) |
-| `eta`     | Tuning parameter controlling budget redistribution (default: 1) |
+| `MSE`     | Pooled mean squared error from ANOVA |
+| `alpha`   | Desired FWER level (default: 0.05) |
+| `eta`     | Budget redistribution tuning parameter (default: 1) |
 
-### Returns
+Returns a data frame with one row per pair containing: `group1`, `group2`, `diff`, `pval`, `dist`, `uncertainty`, `weights`, `threshold`, and `significant`.
 
-A data frame with one row per pair containing:
-- `group1`, `group2` — group indices
-- `diff` — absolute difference in means
-- `pval` — two-sided p-value
-- `weights` — uncertainty weight
-- `threshold` — adaptive significance threshold
-- `significant` — logical: is the comparison significant?
+---
+
+#### `calibrate_eta(I, J, target_fwer = 0.05, n_sim = 10000, tolerance = 0.001, precision = 0.001)`
+
+Uses binary search to find the optimal `eta` for a given group structure that achieves the target FWER. You only need to calibrate once per unique combination of `I` and `J`.
+
+| Parameter | Description |
+|-----------|-------------|
+| `I`       | Number of groups |
+| `J`       | Number of observations per group |
+| `target_fwer` | Desired FWER (default: 0.05) |
+| `n_sim`   | Number of simulations for estimation (default: 10,000) |
+| `tolerance` | Acceptable distance below target FWER (default: 0.001) |
+| `precision` | Binary search stopping criterion (default: 0.001) |
+
+```r
+eta <- calibrate_eta(I = 5, J = 10)
+results <- my_comparison(means, J, MSE, eta = eta)
+```
+
+#### `prop_dist(x, y)`
+
+Helper function used internally. Returns the log-ratio distance between a p-value and the anchor:
+
+$$\mathrm{prop\_dist}(x, y) = \begin{cases} \log(y/x) & x \leq y \\ \log(x/y) & x > y \end{cases}$$
 
 ---
 

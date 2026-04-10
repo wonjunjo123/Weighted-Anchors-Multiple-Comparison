@@ -124,7 +124,7 @@ results <- my_comparison(means, J, MSE, eta = eta)
 
 Helper function used internally. Returns the log-ratio distance between a p-value and the anchor:
 
-$$\mathrm{prop\_dist}(x, y) = |\log \frac{\alpha_1}{p_i}\right|$$
+$$\mathrm{prop\_dist}(x, y) = \left|\log \frac{\alpha_1}{p_i}\right|$$
 
 ---
 

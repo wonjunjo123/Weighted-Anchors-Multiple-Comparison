@@ -130,24 +130,34 @@ $$\mathrm{prop\_dist}(x, y) = \begin{cases} \log(y/x) & x \leq y \\ \log(x/y) & 
 
 ## Example Output
 
+The following example uses the oil filter dataset from Example 11.5, with 5 groups, 9 observations per group, and a pooled MSE of 0.088.
+
 ```r
-# Simulated example with 3 groups, 10 obs each
-set.seed(42)
-J <- 10
-data <- matrix(rnorm(3 * J, mean = c(0, 0.5, 1.5)[rep(1:3, each = J)]), nrow = 3, byrow = TRUE)
-means <- rowMeans(data)
-MSE <- sum(apply(data, 1, function(row) sum((row - mean(row))^2))) / (3 * (J - 1))
+oil_means <- c(14.5, 13.8, 13.3, 14.3, 13.1)
+J <- 9
+MSE <- 0.088
+global_eta <- 0.001
 
-results <- my_comparison(means, J, MSE, eta = 1)
-print(results[, c("group1", "group2", "diff", "pval", "threshold", "significant")])
+eta1 <- global_eta
+demonstration <- my_comparison(oil_means, J, MSE, eta = eta1)
+kable(demonstration[order(demonstration$diff), ])
 ```
 
 ```
-  group1 group2      diff      pval threshold significant
-1      1      2 0.4821430 0.1843275 0.0177132       FALSE
-2      1      3 1.5203847 0.0000412 0.0162891        TRUE
-3      2      3 1.0382417 0.0063201 0.0191045        TRUE
+| group1 | group2 | diff |      pval | dist      | uncertainty | weights   | threshold | significant |
+|-------:|-------:|-----:|----------:|----------:|------------:|----------:|----------:|:------------|
+|      1 |      4 |  0.2 | 0.1604268 |  3.445426 |   0.2902398 | 0.1250652 | 0.0052413 | FALSE       |
+|      3 |      5 |  0.2 | 0.1604268 |  3.445426 |   0.2902398 | 0.1250652 | 0.0052413 | FALSE       |
+|      2 |      5 |  0.5 | 0.0009317 |  1.703169 |   0.5871409 | 0.2530007 | 0.0011636 | TRUE        |
+|      2 |      4 |  0.5 | 0.0009317 |  1.703169 |   0.5871409 | 0.2530007 | 0.0011636 | TRUE        |
+|      1 |      2 |  0.7 | 0.0000116 |  6.086777 |   0.1642906 | 0.0707933 | 0.0011636 | TRUE        |
+|      2 |      5 |  0.7 | 0.0000116 |  6.086777 |   0.1642906 | 0.0707933 | 0.0011636 | TRUE        |
+|      3 |      4 |  1.0 | 0.0000000 | 12.999620 |   0.0769253 | 0.0331473 | 0.0011636 | TRUE        |
+|      1 |      3 |  1.2 | 0.0000000 | 17.479246 |   0.0572107 | 0.0246523 | 0.0011636 | TRUE        |
+|      4 |      5 |  1.2 | 0.0000000 | 17.479246 |   0.0572107 | 0.0246523 | 0.0011636 | TRUE        |
+|      1 |      5 |  1.4 | 0.0000000 | 21.730182 |   0.0460189 | 0.0198297 | 0.0011636 | TRUE        |
 ```
+
 
 ---
 

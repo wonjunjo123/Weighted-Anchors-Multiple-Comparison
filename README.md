@@ -1,12 +1,12 @@
 # Uncertainty-Weighted Multiple Comparisons Method
 
-A novel post-hoc multiple comparisons procedure for one-way ANOVA that adaptively allocates significance budget based on how uncertain each pairwise comparison is.
+A new post-hoc multiple comparisons procedure for one-way ANOVA that allocates significance budget based on how "uncertain" each pairwise comparison is.
 
 ---
 
 ## Method Description
 
-Standard multiple comparison methods (like Tukey's HSD) apply a uniform significance threshold to all pairwise comparisons. This method takes a different approach: comparisons whose p-values fall near the significance boundary are the most "uncertain," and so they receive a larger share of the significance budget. Comparisons that are already clearly significant or clearly non-significant receive less budget adjustment. This adaptive allocation is controlled by a tuning parameter `eta` (η).
+Standard multiple comparison methods (like Tukey's HSD) apply a uniform significance threshold to all pairwise comparisons. This method takes a different approach: comparisons whose p-values fall near the significance boundary are the most "uncertain," and so they receive a larger share of the significance budget. However, so that we can still maintain our desired family-wise error rate This adaptive allocation is controlled by a tuning parameter `eta` (η).
 
 ---
 
@@ -32,7 +32,7 @@ $$\text{anchor} = 1 - (1 - \alpha)^{1/m}$$
 
 Each comparison receives a weight based on its proportional distance from the anchor:
 
-$$\text{dist}_{ij} = \text{prop\_dist}(p_{ij}, \text{anchor}), \qquad w_{ij} = \frac{1/\text{dist}_{ij}}{\sum_k 1/\text{dist}_k}$$
+$$\mathrm{dist}_{ij} = \mathrm{prop\_dist}(p_{ij}, \mathrm{anchor}), \qquad w_{ij} = \frac{1/\mathrm{dist}_{ij}}{\sum_k 1/\mathrm{dist}_k}$$
 
 Comparisons closer to the anchor get higher weight (more uncertainty = more budget).
 

@@ -130,7 +130,7 @@ $$\mathrm{prop\_dist}(\alpha_1, p_i) = \left|\log \frac{\alpha_1}{p_i}\right|$$
 
 ## Example Output
 
-The following example uses the oil filter dataset from Example 11.5, with 5 groups, 9 observations per group, and a pooled MSE of 0.088.
+The following example uses the oil filter dataset from "Modern Mathematical Statistics with Applications" by Jay L. Devore, et al., Example 11.5, with 5 groups, 9 observations per group, and a pooled MSE of 0.088.
 
 ```r
 oil_means <- c(14.5, 13.8, 13.3, 14.3, 13.1)

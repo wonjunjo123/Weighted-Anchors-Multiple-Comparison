@@ -99,6 +99,12 @@ To reproduce the full simulation results and power analysis:
 source("simulation.R")
 ```
 
+To see demo with R's PlantGrowth data:
+
+```r
+source("example_data_demo.R")
+```
+
 
 ### Key Functions
 

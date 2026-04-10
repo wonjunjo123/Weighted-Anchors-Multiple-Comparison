@@ -32,7 +32,7 @@ $$\text{anchor} = 1 - (1 - \alpha)^{1/m}$$
 
 $$\mathrm{uncertainty} = \frac{1}{\mathrm{distance}} = \frac{1}{\left|\log \frac{\alpha_1}{p_i}\right|}$$
 
-Distance is defined as the absolute log-ratio of the p-value to the anchor. Taking the logarithm "tames" exponential differences, and the absolute value ensures distances are the same in either direction. Uncertainty is the reciprocal of distance — the closer a p-value is to the anchor, the more uncertain we are.
+Distance here is uniquely defined as the absolute log-ratio of the p-value to the anchor. Taking the logarithm "tames" exponential differences, and the absolute value ensures distances are the same in either direction. Uncertainty is the reciprocal of distance — the closer a p-value is to the anchor, the more uncertain we are.
 
 **(d) Weights.** Each p-value's weight is its proportion of total uncertainty:
 

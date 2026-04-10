@@ -33,6 +33,7 @@ MSE <- 0.088
 global_eta <- 0.001
 
 
+
 set.seed(123)
 
 my_comparison <- function(means, J, MSE, alpha = 0.05, eta = 1) {
@@ -88,7 +89,7 @@ my_comparison <- function(means, J, MSE, alpha = 0.05, eta = 1) {
 # returns how far away you are but by a proportional log scale
 # we do log because we want to "tame" the exponential differences in pvalues
 prop_dist <- function(x,y) {
-	ifelse(x <= y, log(y/x), log(x/y))
+	abs(log(y/x))
 }
 
 
@@ -274,5 +275,4 @@ analysis_results %>%
   	labs(title="Tukey vs. Weighted Anchor Power Analysis") +
   	theme_minimal() +
   	theme(legend.position="bottom", plot.title = element_text(hjust=0.5))
-
 

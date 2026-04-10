@@ -124,7 +124,7 @@ results <- my_comparison(means, J, MSE, eta = eta)
 
 Helper function used internally. Returns the log-ratio distance between a p-value and the anchor:
 
-$$\mathrm{prop\_dist}(x, y) = \begin{cases} \log(y/x) & x \leq y \\ \log(x/y) & x > y \end{cases}$$
+$$\mathrm{prop\_dist}(x, y) = |\log \frac{\alpha_1}{p_i}\right|$$
 
 ---
 
@@ -138,8 +138,7 @@ J <- 9
 MSE <- 0.088
 global_eta <- 0.001
 
-eta1 <- global_eta
-demonstration <- my_comparison(oil_means, J, MSE, eta = eta1)
+demonstration <- my_comparison(oil_means, J, MSE, eta = global_eta)
 kable(demonstration[order(demonstration$diff), ])
 ```
 

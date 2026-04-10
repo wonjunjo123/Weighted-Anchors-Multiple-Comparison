@@ -198,6 +198,20 @@ kable(demonstration[order(demonstration$diff), ])
 
 ---
 
+## Demo with Example Data
+
+The following demo uses R's built-in InsectSprays dataset with 6 groups, 12 observations per group, and a pooled MSE of 15.3813.
+
+To reproduce the full demo results:
+
+```r
+source("example_data_demo.R")
+```
+
+---
+
+
+
 ## License
 
 MIT License. See `LICENSE` for details.

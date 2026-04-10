@@ -198,5 +198,5 @@ MIT License. See `LICENSE` for details.
 ---
 
 ## Acknowledgments
-Simulation code received from Dr. Sybil Prince-Nelson; Department of Mathematics, Washington and Lee University
+Simulation code received from Dr. Sybil Prince-Nelson; Department of Mathematics, Washington and Lee University\\
 Feedback and debugging assistance provided with help from Claude (Anthropic).

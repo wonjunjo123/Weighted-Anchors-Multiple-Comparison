@@ -223,7 +223,7 @@ cat("\nJ:", J, "\n")
 cat("MSE:", round(MSE, 4), "\n")
 
 eta1 <- calibrate_eta(I = I, J = J)
-cat("\nCalibrated eta:", round(eta, 4), "\n")
+cat("\nCalibrated eta:", round(eta1, 4), "\n")
 
 results <- my_comparison(means, J, MSE, eta = eta1)
 cat("\nPairwise Comparison Results:\n")

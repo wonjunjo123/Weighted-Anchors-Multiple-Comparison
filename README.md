@@ -66,7 +66,7 @@ A comparison is declared significant if $p_i < \mathrm{new\ threshold}$.
 
 ### Requirements
 
-- R (version 4.0 or later)
+- R (Latest version recommended)
 - The following R packages:
 
 ```r

@@ -43,12 +43,12 @@ $$w_i = \frac{\mathrm{uncertainty}_i}{\sum_k \mathrm{uncertainty}_k}$$
 ### Threshold for $p_i > \alpha_1$ (non-rejected comparisons)
 Add budget proportional to weight, scaled by $\eta$:
 
-$$\mathrm{new\ threshold} = \alpha_1 + w_i \cdot \eta$$
+$$\mathrm{new\ threshold} = \alpha_1 + w_i \eta$$
 
 ### Threshold for $p_i \leq \alpha_1$ (rejected comparisons)
 Subtract budget proportional to weight, scaled by $\eta$, with a floor to ensure the threshold stays positive:
 
-$$\mathrm{new\ threshold} = \alpha_1 - \min\!\left(\frac{1}{\mathrm{weight}},\ \left(\frac{\alpha_1}{\eta} - \epsilon\right) * \eta\right)$$
+$$\mathrm{new\ threshold} = \alpha_1 - \min\left(\frac{1}{\mathrm{weight}},\ \left(\frac{\alpha_1}{\eta} - \epsilon\right) * \eta\right)$$
 
 The $\left(\frac{\alpha_1}{\eta} - \epsilon\right)$ term guarantees the threshold stays above 0, since:
 

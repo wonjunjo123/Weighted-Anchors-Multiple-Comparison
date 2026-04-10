@@ -88,6 +88,7 @@ install.packages("ggplot2")
 
 Clone this repository, then source the functions file to load all functions into your environment:
 
+##### Important: must take into account absolute/relative path when sourcing code into environment!
 ```r
 source("mc_project budget (main).R")
 ```

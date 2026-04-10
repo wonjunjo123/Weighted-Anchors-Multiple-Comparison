@@ -1,4 +1,4 @@
-# Uncertainty-Weighted Multiple Comparisons Method
+# Jo's Weighted Anchors: An Uncertainty-Weighted Multiple Comparisons Method
 
 A new post-hoc multiple comparisons procedure for one-way ANOVA that allocates significance budget based on how "uncertain" each pairwise comparison is.
 

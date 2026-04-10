@@ -1,8 +1,3 @@
-# Demo: Weighted Anchors Method on PlantGrowth Dataset
-# The PlantGrowth dataset measures dried plant weight across 3 groups:
-# ctrl  - control group
-# trt1  - treatment 1
-# trt2  - treatment 2
 
 # Need to account for relative path of user
 source("/Users/wonjunjo/Library/CloudStorage/Box-Box/Academics/Fourth Year Academics/MATH310/MC Project/mc_project budget (main).R")

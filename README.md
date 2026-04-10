@@ -176,22 +176,6 @@ kable(demonstration[order(demonstration$diff), ])
 
 ---
 
-## FWER Simulation Results
-
-Empirical FWER estimated over 10,000 simulations under the global null (all group means equal):
-
-| Scenario | I | J | FWER | SE |
-|----------|---|---|------|----|
-| Small    | 3 | 5 | ...  | ... |
-| Medium   | 4 | 10| ...  | ... |
-| Large    | 5 | 20| ...  | ... |
-| Many groups | 6 | 10 | ... | ... |
-| Large J  | 3 | 30| ...  | ... |
-
-*(Fill in with your simulation results)*
-
----
-
 ## License
 
 MIT License. See `LICENSE` for details.
@@ -199,5 +183,5 @@ MIT License. See `LICENSE` for details.
 ---
 
 ## Acknowledgments
-
+Simulation code received from Dr. Sybil Prince-Nelson; Department of Mathematics, Washington and Lee University
 Feedback and debugging assistance provided with help from Claude (Anthropic).

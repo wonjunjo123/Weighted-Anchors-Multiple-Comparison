@@ -48,7 +48,7 @@ $$\mathrm{new\ threshold} = \alpha_1 + w_i \cdot \eta$$
 ### Threshold for $p_i \leq \alpha_1$ (rejected comparisons)
 Subtract budget proportional to weight, scaled by $\eta$, with a floor to ensure the threshold stays positive:
 
-$$\mathrm{new\ threshold} = \alpha_1 - \min\left(\frac{1}{w_i},\ \frac{\alpha_1}{\eta} - \epsilon\right) \cdot \eta$$
+$$\mathrm{new\ threshold} = \alpha_1 - \min\left(\frac{1}{w_i}, (\frac{\alpha_1}{\eta} - \epsilon\right)\cdot \eta) $$
 
 The $\left(\frac{\alpha_1}{\eta} - \epsilon\right)$ term guarantees the threshold stays above 0, since:
 

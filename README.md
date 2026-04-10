@@ -164,13 +164,13 @@ kable(demonstration[order(demonstration$diff), ])
 
 ### Use this method when:
 - You want to detect real, but small differences
-- You have a **moderate number of groups** (3–6) where some comparisons are near the boundary of significance and careful budget allocation matters
+- You have a **moderate number of groups** where some comparisons are near the boundary of significance and careful budget allocation matters
 - You are willing to accept **slightly variable FWER** in exchange for improved power on borderline comparisons
 - You want a **tunable procedure** — `eta` allows you to control how aggressively budget is redistributed
 
 ### Use Tukey's HSD when:
 - You need to detect real differences with higher effect sizes
-- You have **many groups** (6+), where the behavior of the uncertainty weights becomes harder to interpret
+- You have **many groups** where the behavior of the uncertainty weights becomes harder to interpret
 - You need a method that is **immediately recognized** by reviewers and journals
 - **Simplicity and reproducibility** are priorities over adaptive behavior
 

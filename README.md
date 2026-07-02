@@ -260,6 +260,8 @@ From which we get the table:
 
 ---
 
+## Next Steps
+We will need to develop modifications to increase the power further.
 
 
 ## License
